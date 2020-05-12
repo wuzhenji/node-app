@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "123456",
+    "password": "Wzj@123456",
     "database": "wzj_dev",
-    "host": "127.0.0.1",
+    "host": "123.57.211.30",
     "dialect": "mysql",
     "timezone": "+08:00"
   },
