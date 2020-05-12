@@ -16,7 +16,7 @@
     "timezone": "+08:00"
   },
   "production": {
-    "username": "root",
+    "username": "roott",
     "password": "Wzj@123456",
     "database": "wzj_dev",
     "host": "123.57.211.30",
