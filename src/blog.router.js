@@ -8,7 +8,7 @@ const BlogAndComment = models.blog.hasMany(models.blogcomment, {
     foreignKey: 'blogid', as: 'comment'
 })
 
-router.get('/', async (req, res, next) => { // 查询blog
+router.get('/', async (req, res, next) => { // 查询blog列表
     try {
         let { title, tagid, pagesize, pagenum } = req.query
         let limit = +pagesize
@@ -29,12 +29,31 @@ router.get('/', async (req, res, next) => { // 查询blog
             where: where,
             order: [['updatedAt', 'DESC']]
         })
-        // list.forEach(v => {
-        //     v.dataValues.commentNum = v.comment.length
-        // });
         res.json({
             code: 35000,
             data: list,
+            message: "查询成功"
+        })
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get('/byid',async (req, res, next) => { // 根据id查询blog
+    try {
+        let { id } = req.query
+        let info = await models.blog.findOne({
+            include: [{
+                association: BlogAndComment,
+            }],
+            where: {
+                id
+            },
+            order: [['updatedAt', 'DESC']]
+        })
+        res.json({
+            code: 35000,
+            data: info,
             message: "查询成功"
         })
     } catch (error) {
